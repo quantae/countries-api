@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import flagSample from "../../assets/flag-sample.png";
+
 import styles from "./countrycard.module.css";
-import { Outlet, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { ThemeContext } from "../../context/themecontext";
 
 const CountryCard = ({ onClick, data}) => {
