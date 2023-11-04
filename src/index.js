@@ -3,11 +3,32 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from './context/themecontext';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import CountryDetailPage from './pages/country-detail/CountryDetailPage';
 
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>
+  },
+  {
+    path: 'countries/:countryName',
+    element: <CountryDetailPage/>
+  }
+
+])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+      
+    </ThemeProvider>
+    
   </React.StrictMode>
 );
 

@@ -1,0 +1,108 @@
+/*--------------*
+** BACK BUTTON **
+/*--------------*/
+.back_button {
+  padding: 0.5rem;
+  font-weight: 400;
+  background-color: hsl(var(--clr-light));
+ &&:active {
+    border: solid 1px transparent;
+ }
+  &&:hover {
+    cursor: pointer;
+    color: hsl(var(--clr-dark1));
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.dark_back_button {
+    padding: 0.5rem;
+    font-weight: 400;
+    background-color: hsl(var(--clr-dark2));
+    color: hsl(var(--clr-light));
+    &&:active {
+        border: solid 1px transparent;
+     }
+    &&:hover {
+      cursor: pointer;
+      color: hsl(var(--clr-light));
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px 0 hsl(var(--clr-light), 0.7);
+    }
+  }
+  .bg_transparent {
+    background-color: transparent;
+}
+
+/*--------------*
+** COUNTRY DETAIL PAGE **
+/*--------------*/
+.country_detail_page_container {
+    margin-top: 4rem;
+    gap: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: start;
+    align-content: start;
+    @media (max-width: 670px) {
+        grid-template-columns: 1fr;
+    }
+}
+  .country_card_container img {
+    width: 20rem;
+    margin: 0;
+    border-radius: var(--bradius) var(--bradius) 0 0;
+
+}
+
+.contry_detail_page_container {
+    padding: 0 1rem;
+}
+.country_detail_page_container h4 {
+    margin-bottom: 1.5rem;
+    font-size: var(--fs-600);
+}
+.country_detail_page_container p {
+    font-size: var(--fs-300);
+    font-weight: 600;
+    padding: 0.2rem 0;
+    margin-bottom: 0.6rem;
+}
+
+
+.country_detail_page_container p:last-child {
+    
+    padding-bottom: 1.5rem;
+}
+
+.country_detail_page_container p span {
+    font-weight: 300;
+}
+
+.country_stats_body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.country_starts_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 950px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.border_countries {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: baseline;
+    @media (max-width: 950px) {
+        grid-template-columns: 1fr;
+    }
+}
+.border_countries div {
+   flex-wrap: wrap;
+}
