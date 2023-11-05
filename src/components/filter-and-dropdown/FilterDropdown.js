@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Dropdown from "../dropdown/Dropdown";
 import SearchBar from "../searchbar/SearchBar";
 import styles from "./filterdropdown.module.css";
-import data from '../../data.json';
 import { SearchContext } from "../../context/searchcontext";
 
 const FilterDropdown = ({ listItems, selectedValue, onClick }) => {

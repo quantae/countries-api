@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import styles from "./searchbar.module.css";
 import { ReactComponent as SearchIcon } from "../../assets/search-icon.svg";
 import { ThemeContext } from "../../context/themecontext";
-import { Formik, Form, useField, Field } from "formik";
-import * as Yup from "yup";
+
 
 export const TextInput = ({ disabled, onClick,onChange,value,label, placeholder, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -42,12 +41,7 @@ export const TextInput = ({ disabled, onClick,onChange,value,label, placeholder,
   );
 };
 const SearchBar = ({ value, onClick, onChange, onSubmit }) => {
-  const handleTextChange = (formik) => (e) => {
-    const { search, value } = e.target;
-    formik.setFieldValue(search, value); // Update the form field value
-    // Your logic here
-    console.log(value);
-  };
+
 
   return (
     <div>

@@ -4,7 +4,7 @@ import { ThemeContext } from "./context/themecontext";
 import FilterDropdown from "./components/filter-and-dropdown/FilterDropdown";
 import Display from "./components/display/Display";
 import NavbarLayout from "./layout/NavbarLayout";
-import SearchCheckBeforeDisplay from "./components/display/Display";
+
 
 
 /**React Router Routing */
