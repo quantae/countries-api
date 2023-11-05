@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import "./App.css";
-
 import { ThemeContext } from "./context/themecontext";
 import FilterDropdown from "./components/filter-and-dropdown/FilterDropdown";
 import Display from "./components/display/Display";
 import NavbarLayout from "./layout/NavbarLayout";
+import SearchCheckBeforeDisplay from "./components/display/Display";
 
 
 /**React Router Routing */
@@ -51,7 +51,8 @@ function App() {
             selectedValue={filter}
             onClick={handleFilterSelection}
           />
-          <Display />
+         {/*} <SearchCheckBeforeDisplay />*/}
+          <Display/>
         </div>
       </NavbarLayout>
       

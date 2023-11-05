@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import CountryCard from "../country-card/CountryCard";
 import styles from "./display.module.css";
 import jsonData from "../../data.json";
@@ -6,25 +6,35 @@ import { SearchContext } from "../../context/searchcontext";
 
 const Display = () => {
   const { searchText } = useContext(SearchContext);
-  let filteredCountries = [];
+  //let filteredCountries = [];
 
- 
+ const filteredCountries = useMemo(() => {
+  if (searchText === "") {
+    return jsonData;
+  } else {
+    return jsonData.filter((country) => {
+      return country.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+  }
+ }, [searchText]);
   // Checking for empty string before displaying countries
   if (searchText === "") {
     return (
       <div className={styles.display_container}>
-        <CountryCard key={jsonData.name} jsonData={jsonData} />
+        {/* Map through the data and display each country */}
+        {filteredCountries.map((index) => (
+          <CountryCard key={index} jsonData={filteredCountries} />
+        ))}
       </div>
     );
   } else {
-    // Filter the countries based on the search text
-    filteredCountries = jsonData.filter((country) => {
-      return country.name.toLowerCase().includes(searchText.toLowerCase());
-    });
-console.log(filteredCountries)
     if (filteredCountries.length === 0) {
       return <h4>No country found</h4>;
     }
+    // Filter the countries based on the search text
+  
+console.log(filteredCountries)
+   
 
 
  return (

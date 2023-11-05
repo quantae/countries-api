@@ -5,10 +5,11 @@ import { ThemeContext } from "../../context/themecontext";
 import { Formik, Form, useField, Field } from "formik";
 import * as Yup from "yup";
 
-export const TextInput = ({ disabled, onClick,onChange,value,label, placeholder, ...props }) => {
+export const TextInput = ({ disabled, onClick,onChange,values,label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
   const { isDark } = useContext(ThemeContext);
+  const [field, meta] = useField(props);
 
   return (
     <>
@@ -31,17 +32,18 @@ export const TextInput = ({ disabled, onClick,onChange,value,label, placeholder,
           type="input"
           className={styles.input}
           onChange={onChange}
-          value={value}
-        placeholder={placeholder}
+          value={values}
+          {...field}
+          {...props}
         />
       </div>
-      {
-        <div className={styles.error}></div>
-      }
+      {meta.touched && meta.error ? (
+        <div className={styles.error}>{meta.error}</div>
+      ) : null}
     </>
   );
 };
-const SearchBar = ({ value, onClick, onChange, onSubmit }) => {
+const SearchBar = ({ values, onClick, onChange, onSubmit }) => {
   const handleTextChange = (formik) => (e) => {
     const { search, value } = e.target;
     formik.setFieldValue(search, value); // Update the form field value
@@ -53,24 +55,35 @@ const SearchBar = ({ value, onClick, onChange, onSubmit }) => {
     <div>
       <div>
         {/** <input onChange={onChange} value={value} className='input' type="" name='search' id='search' placeholder="Search for any word..."/>*/}
-        
-          <div
+        <Formik
+          initialValues={{
+            search: "",
+          }}
+          validationSchema={Yup.object({
+            search: Yup.string(),
+            // .min(2, 'Must be more than 2 words')
+            //.required('Required'),
+          })}
+          onSubmit={onSubmit}
+        >
+          <Form
             style={{
               display: "flex",
               flexDirection: "column",
               maxWidth: "25rem",
             }}
           >
-            <TextInput 
+            <Field 
             name="search" 
             type="text" 
+            as={TextInput}
             placeholder="Search for a word"
-            value={value}
+            value={values.name}
            onChange={onChange}
             />
             
-          </div>
-      
+          </Form>
+        </Formik>
       </div>
     </div>
   );

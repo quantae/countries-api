@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './context/themecontext';
+import {SearchProvider} from './context/searchcontext'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import CountryDetailPage from './pages/country-detail/CountryDetailPage';
 
@@ -23,9 +24,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router}>
+      <SearchProvider>
+        <RouterProvider router={router}>
         <App />
       </RouterProvider>
+      </SearchProvider>
+      
       
     </ThemeProvider>
     
