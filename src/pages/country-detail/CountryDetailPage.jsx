@@ -3,7 +3,7 @@ import NavbarLayout from "../../layout/NavbarLayout";
 import { ReactComponent as BackIcon } from "../../assets/back-icon.svg";
 import styles from "./countrydetailpage.module.css";
 import { ThemeContext } from "../../context/themecontext";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import data from "../../data.json";
 
 export const Button = ({ onClick, label, icon, className, data }) => {
@@ -137,7 +137,10 @@ const CountryDetailPage = ({ countryData }) => {
                 <div className="flex-gap">
                   {Array.isArray(countryDetails.borders) &&
                     countryDetails.borders.map((border, index) => (
+                      <Link to={`countries/${border}`}>
                       <BorderCountryList key={index} name={border} />
+                      </Link>
+                      
                     ))}
                 </div>
 

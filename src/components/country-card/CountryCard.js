@@ -4,14 +4,14 @@ import styles from "./countrycard.module.css";
 import {  Link } from "react-router-dom";
 import { ThemeContext } from "../../context/themecontext";
 
-const CountryCard = ({ onClick, jsonData}) => {
+const CountryCard = ({ onClick, country}) => {
   const { isDark } = useContext(ThemeContext);
-const countries = jsonData;
+//const countries = country;
 
   return (
     <>
-      {
-        countries.map((country) => (
+      
+        
             <Link to={`countries/${country.name}`} style={{outline:"none", textDecoration:"none", color:'inherit'}} key={country.name}>
             <div
               className={
@@ -35,8 +35,7 @@ const countries = jsonData;
               </div>
             </div>
           </Link>
-        ))
-    }
+        
   
     </>
   

@@ -4,12 +4,25 @@ import { ReactComponent as Caret } from "../../assets/caret-down.svg";
 import ClickOutSide from "../clickOut/ClickOutSide";
 import styles from "./dropdown.module.css";
 import { ThemeContext } from '../../context/themecontext'
+import { filterByRegionDropdownContext } from "../../context/dropdownFiltercontext";
+
+
+// Dropdown list items. 
+const FILTER_LISTS = [
+  "All countries",
+  "Africa",
+  "America",
+  "Asia",
+  "Europe",
+  "Oceania",
+];
 
 const Dropdown = ({ listItems, selectedValue, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const exceptionRef = useRef();
   const {isDark} = useContext(ThemeContext)
 
+ 
   const toggleDropDown = () => {
     setIsOpen((prev) => !prev);
   };
@@ -57,7 +70,8 @@ const Dropdown = ({ listItems, selectedValue, onClick }) => {
               className={styles.dropdown_list}
               tabIndex={-1}
             >
-              {listItems.map((item, index) => (
+              {/**list items is map through */}
+              {FILTER_LISTS.map((item, index) => (
                 <li
                   className="dropdown-list-item"
                   key={`dropdown-list-${index}`}

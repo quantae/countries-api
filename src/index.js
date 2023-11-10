@@ -1,38 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from './context/themecontext';
-import {SearchProvider} from './context/searchcontext'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
-import CountryDetailPage from './pages/country-detail/CountryDetailPage';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "./context/themecontext";
+import { SearchProvider } from "./context/searchcontext";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CountryDetailPage from "./pages/country-detail/CountryDetailPage";
+import { FilterByRegionDropdownProvider } from "./context/dropdownFiltercontext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>
+    element: <App />,
   },
   {
-    path: 'countries/:countryName',
-    element: <CountryDetailPage/>
-  }
-
-])
-const root = ReactDOM.createRoot(document.getElementById('root'));
+    path: "countries/:countryName",
+    element: <CountryDetailPage />,
+  },
+]);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
       <SearchProvider>
-        <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
+        <FilterByRegionDropdownProvider>
+          <RouterProvider router={router}>
+            <App />
+          </RouterProvider>
+        </FilterByRegionDropdownProvider>
       </SearchProvider>
-      
-      
     </ThemeProvider>
-    
   </React.StrictMode>
 );
 

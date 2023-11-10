@@ -1,26 +1,23 @@
 import { useContext, useEffect, useState } from "react";
+import filterDropdownStyles from "./components/filter-and-dropdown/filterdropdown.module.css";
 import "./App.css";
 import { ThemeContext } from "./context/themecontext";
-import FilterDropdown from "./components/filter-and-dropdown/FilterDropdown";
+//import FilterDropdown from "./components/filter-and-dropdown/FilterDropdown";
 import Display from "./components/display/Display";
 import NavbarLayout from "./layout/NavbarLayout";
-
-
+import { filterByRegionDropdownContext } from "./context/dropdownFiltercontext";
+import { SearchContext } from "./context/searchcontext";
+import SearchBar from "./components/searchbar/SearchBar";
+import Dropdown from "./components/dropdown/Dropdown";
 
 /**React Router Routing */
 
-
-const FILTER_LISTS = [
-  "All countries",
-  "Africa",
-  "America",
-  "Asia",
-  "Europe",
-  "Oceania",
-];
 function App() {
   const { isDark, handleToggleTheme } = useContext(ThemeContext);
-  const [filter, setFilter] = useState("Filter by region");
+  const { searchText, handleSearchChange } = useContext(SearchContext);
+  const { filterByRegion, handleFilterSelection } = useContext(
+    filterByRegionDropdownContext
+  );
 
   useEffect(() => {
     // print theme each time is it changed.
@@ -37,28 +34,38 @@ function App() {
     }
   }, [isDark]);
 
-  const handleFilterSelection = (value) => {
-    setFilter(value);
+  const handleSubmit = (values) => {
+    searchText(values.search);
+    console.log(searchText);
+    // Your logic here
   };
+  // Handles filter by region selection.
 
   return (
- 
-        <div className={`${isDark ? "dark" : "light"}`}>
+    <div className={`${isDark ? "dark" : "light"}`}>
       <NavbarLayout onClick={handleToggleTheme}>
         <div className="container">
-          <FilterDropdown
-            listItems={FILTER_LISTS}
-            selectedValue={filter}
-            onClick={handleFilterSelection}
-          />
-         {/*} <SearchCheckBeforeDisplay />*/}
-          <Display/>
+       
+          <div
+            className={`${filterDropdownStyles.filter_dropdown_container} flex-space-between`}
+          >
+            <div className={filterDropdownStyles.searchbar}>
+              <SearchBar
+                onChange={handleSearchChange}
+                onSubmit={handleSubmit}
+              />
+            </div>
+            <div className={filterDropdownStyles.dropdown}>
+              <Dropdown
+                selectedValue={filterByRegion}
+                onClick={handleFilterSelection}
+              />
+            </div>
+          </div>
+          <Display />
         </div>
       </NavbarLayout>
-      
     </div>
- 
-  
   );
 }
 

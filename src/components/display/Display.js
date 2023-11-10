@@ -1,85 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, memo, useState, useEffect, useMemo } from "react";
 import CountryCard from "../country-card/CountryCard";
 import styles from "./display.module.css";
 import jsonData from "../../data.json";
 import { SearchContext } from "../../context/searchcontext";
+import { filterByRegionDropdownContext } from "../../context/dropdownFiltercontext";
 
-const Display = () => {
+const Display = memo(() => {
+  // import context variables
   const { searchText } = useContext(SearchContext);
-  let filteredCountries = [];
+  const {filterByRegion} = useContext(filterByRegionDropdownContext);
 
- 
-  // Checking for empty string before displaying countries
-  if (searchText === "") {
-    return (
-      <div className={styles.display_container}>
-        <CountryCard key={jsonData.name} jsonData={jsonData} />
-      </div>
-    );
-  } else {
-    // Filter the countries based on the search text
-    filteredCountries = jsonData.filter((country) => {
-      return country.name.toLowerCase().includes(searchText.toLowerCase());
-    });
-console.log(filteredCountries)
-    if (filteredCountries.length === 0) {
-      return <h4>No country found</h4>;
-    }
+  // Filter the countries based on region
+  const countriesByRegion = useMemo(() => {
+    return filterByRegion === 'All countries' ? jsonData : 
+    jsonData.filter((country) => country.region.toLowerCase().includes(filterByRegion.toLowerCase()));
+  }, [filterByRegion]);
 
+  // Filter the displayed countries based on the Search Text
+  const filteredCountries = useMemo(() => {
+    return searchText
+    ? countriesByRegion.filter((country) => country.name.toLowerCase().includes(searchText.toLowerCase()))
+    : countriesByRegion;
+  }, [searchText, countriesByRegion]);
 
- return (
+  return (
     <div className={styles.display_container}>
-      {filteredCountries.map((index) => (
-        <CountryCard key={index} jsonData={filteredCountries}/>
-      ))}
-      
+      {filteredCountries.length === 0 ? (
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <h4>No countries found</h4>
+        <p>If you intend to search all countries, choose "All countries" from the dropdown menu.</p>
+        </div>
+        
+      ) : (
+        filteredCountries.map((country) => (
+          <CountryCard country={country} key={country.name} />
+        ))
+      )}
     </div>
   );
-  };
-  }
-  
-  export default Display;
+});
 
-/*
-const SearchCheckBeforeDisplay = () => {
-  const { searchText } = useContext(SearchContext);
-
-  let filteredCountries = []; 
-  // Checking for empty string before displaying countries
-  if (searchText === "") {
-    return (
-      <div>
-        <h1>No country found</h1>
-      </div>
-    );
-  }
-  try{
-    filteredCountries = jsonData.filter((country) => {
-      return country.name.toLowerCase().includes(searchText.toLowerCase());
-
-    })
-  }
-  catch{
-    console.log("error filtering")
-
-
-  }
-    
-  console.log(filteredCountries)
-  if (filteredCountries.length === 0) {
-    return (
-      <div>
-        <h1>No country found</h1>
-      </div>
-    );
-  } else {
-    return filteredCountries.map((countryItem, index) => (
-     
-      <div key={countryItem.name}>
-        hello
-      </div>
-    ));
-  }
-};
-
-export default SearchCheckBeforeDisplay;*/
+export default Display;

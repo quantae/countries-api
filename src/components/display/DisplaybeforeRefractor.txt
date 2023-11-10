@@ -1,0 +1,87 @@
+import React, { useContext } from "react";
+import CountryCard from "../country-card/CountryCard";
+import styles from "./display.module.css";
+import jsonData from "../../data.json";
+import { SearchContext } from "../../context/searchcontext";
+import { filterByRegionDropdownContext } from "../../context/dropdownFiltercontext";
+
+const Display = () => {
+  // import context variables
+  const { searchText } = useContext(SearchContext);
+  const {filterByRegion} = useContext(filterByRegionDropdownContext);
+
+  // initialize filtered values. 
+  let filteredCountries = [];
+  let countriesByRegion = [];
+  
+  if (filterByRegion === "All countries" || filterByRegion === "Filter by region"){
+     countriesByRegion= jsonData;
+     console.log('filter from 1st in display: ', filterByRegion)
+     console.log("countries to dispalay: ", countriesByRegion)
+  } else {
+    // Filter the countries based on the region
+    countriesByRegion = jsonData.filter((country) => {
+      return country.region.toLowerCase().includes(filterByRegion.toLowerCase());
+    })
+  }
+
+
+  // Filter the displayed countries based on the Search Text
+
+  if (searchText === "") {
+   filteredCountries = countriesByRegion
+  } else {
+    filteredCountries = jsonData.filter((country) => {
+      return country.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+  }
+
+  // Render the countries
+  /*if (filteredCountries.length === 0) {
+    return <h4> No countires found</h4>
+  };*/
+
+ /*
+  // Checking for empty string before displaying countries
+  if (searchText === "") {
+    return (
+      <div className={styles.display_container}>
+        <CountryCard key={jsonData.name} jsonData={jsonData} />
+      </div>
+    );
+  } else {
+    // Filter the countries based on the search text
+    filteredCountries = jsonData.filter((country) => {
+      return country.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+console.log(filteredCountries)
+    if (filteredCountries.length === 0) {
+      return <h4>No country found</h4>;
+    }*/
+/*
+ return (
+    <div className={styles.display_container}>
+      {filteredCountries.map((country) => (
+        <CountryCard  jsonData={filteredCountries}/>
+      ))}
+      
+    </div>
+  );*/
+ 
+  return (
+    <div className={styles.display_container}>
+      {filteredCountries.length === 0 ? (
+        <h4>No countries found</h4>
+      ) : (
+        filteredCountries.map((country) => (
+          <CountryCard jsonData={filteredCountries} key={country.name} />
+        ))
+      )}
+    </div>
+  );
+  
+  };
+
+  
+  export default Display;
+
