@@ -138,9 +138,8 @@ const CountryDetailPage = ({ countryData }) => {
                   {Array.isArray(countryDetails.borders) &&
                     countryDetails.borders.map((border, index) => (
                       <Link to={`countries/${border}`}>
-                      <BorderCountryList key={index} name={border} />
+                        <BorderCountryList key={index} name={border} />
                       </Link>
-                      
                     ))}
                 </div>
 

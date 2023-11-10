@@ -1,4 +1,4 @@
-import React, { useContext, memo, useState, useEffect, useMemo } from "react";
+import React, { useContext, memo, useMemo } from "react";
 import CountryCard from "../country-card/CountryCard";
 import styles from "./display.module.css";
 import jsonData from "../../data.json";
