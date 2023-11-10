@@ -16,7 +16,7 @@
   background-color: hsl(var(--clr-light));
   border-radius: var(--bradius) var(--bradius) 0 0;
   &&:hover {
-    box-shadow: 0 0 20px 0 hsl(var(--clr-light), 0.3);
+    box-shadow: 0 0 20px 0 hsl(var(--clr-dark2), 0.3);
   }
   @media (max-width: 767px) {
     width: 100%;
