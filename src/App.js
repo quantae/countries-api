@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import filterDropdownStyles from "./components/filter-and-dropdown/filterdropdown.module.css";
 import "./App.css";
 import { ThemeContext } from "./context/themecontext";
