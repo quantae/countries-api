@@ -40,12 +40,12 @@ const CountryDetailPage = ({ countryData }) => {
   const navigate = useNavigate();
 
   countryData = data.find((country) => country.name === countryName);
-  console.log("country data: ", countryData);
+  // console.log("country data: ", countryData);
   useEffect(() => {
     if (countryData) {
       setCountryDetails(countryData);
     }
-    console.log("country Data: ", countryData);
+    // console.log("country Data: ", countryData);
   }, [countryData]);
 
   const findCountryName = (abbreviation) => {

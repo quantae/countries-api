@@ -19,10 +19,10 @@ function App() {
     filterByRegionDropdownContext
   );
 
-  useEffect(() => {
-    // print theme each time is it changed.
-    console.log("Dark? : ", isDark);
-  }, [isDark]);
+  // useEffect(() => {
+  //   // print theme each time is it changed.
+  //   console.log("Dark? : ", isDark);
+  // }, [isDark]);
 
   useEffect(() => {
     // update the boday basedon isDark?
