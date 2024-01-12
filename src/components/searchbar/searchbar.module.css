@@ -1,5 +1,5 @@
 .search_container {
-  background-color: hsl(var(--clr-light));
+  background-color: hsl(var(--clr-white));
   padding: 0.3rem 1rem;
   border-radius: var(--bradius);
   transition: 0.5s;

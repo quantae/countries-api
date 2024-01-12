@@ -58,7 +58,7 @@ const SearchBar = ({ value, onClick, onChange, onSubmit }) => {
             <TextInput 
             name="search" 
             type="text" 
-            placeholder="Search for a word"
+            placeholder="Search for a country"
             value={value}
            onChange={onChange}
             />

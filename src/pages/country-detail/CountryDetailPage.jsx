@@ -5,7 +5,9 @@ import styles from "./countrydetailpage.module.css";
 import { ThemeContext } from "../../context/themecontext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import data from "../../data.json";
+import { find } from "lodash";
 
+// Back reusable button
 export const Button = ({ onClick, label, icon, className, data }) => {
   const { isDark } = useContext(ThemeContext);
   return (
@@ -21,10 +23,11 @@ export const Button = ({ onClick, label, icon, className, data }) => {
   );
 };
 
-const BorderCountryList = ({ name = "border country" }) => {
+// Border country list button
+const BorderCountryListButton = ({ name = "border country", onClick }) => {
   return (
     <>
-      <Button label={name} />
+      <Button label={name} onClick={onClick}/>
     </>
   );
 };
@@ -45,6 +48,15 @@ const CountryDetailPage = ({ countryData }) => {
     console.log("country Data: ", countryData);
   }, [countryData]);
 
+  const findCountryName = (abbreviation) => {
+    const country = data.find((country) => country.alpha3Code === abbreviation);
+    return country ? country.name : "";
+  };
+
+  const handleBorderCountryClick = (abbreviation) => {
+    const countryName = findCountryName(abbreviation);
+    navigate(`/countries/${countryName}`);
+  };
   /*
   useEffect(() => {
     fetch(data) // Adjust the path as needed
@@ -137,9 +149,11 @@ const CountryDetailPage = ({ countryData }) => {
                 <div className="flex-gap">
                   {Array.isArray(countryDetails.borders) &&
                     countryDetails.borders.map((border, index) => (
-                      <Link to={`countries/${border}`}>
-                        <BorderCountryList key={index} name={border} />
-                      </Link>
+                      <BorderCountryListButton
+                        key={index}
+                        name={border}
+                        onClick={() => handleBorderCountryClick(border)}
+                      />
                     ))}
                 </div>
 

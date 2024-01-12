@@ -42,7 +42,7 @@ function App() {
   // Handles filter by region selection.
 
   return (
-    <div className={`${isDark ? "dark" : "light"}`}>
+    <div>
       <NavbarLayout onClick={handleToggleTheme}>
         <div className="container">
        

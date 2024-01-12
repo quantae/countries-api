@@ -13,7 +13,7 @@
   width: 18rem;
   height: 20rem;
   margin: 0;
-  background-color: hsl(var(--clr-light));
+  background-color: var(--clr-light);
   border-radius: var(--bradius) var(--bradius) 0 0;
   &&:hover {
     box-shadow: 0 0 20px 0 hsl(var(--clr-dark2), 0.3);

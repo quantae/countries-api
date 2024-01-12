@@ -26,7 +26,7 @@ font-weight: 700;
     display: flex;
     align-items: center;
     gap: 1rem;
-  background-color: hsl(var(--clr-light));
+  background-color: hsl(var(--clr-white));
   border-radius: var(--bradius);
   height: 2.5rem;
     &:hover {
@@ -101,7 +101,7 @@ height: 2.5rem;
     padding: 0.2rem 1rem;
     font-size: 1rem;
     &:hover {
-        border-left: 0.5rem solid hsl(var(--clr-light),0.8);
+        border-left: 0.5rem solid hsl(var(--clr-white),0.8);
         transition: 0.4s;
     }
 }
@@ -128,40 +128,3 @@ height: 2.5rem;
 /* ---------------------*/
 /* Custom properties    */
 /* -------------------- */
-:root {
-    /* colors: light mode */
-    --clr-primary: 274, 82%, 60%;
-
-    --clr-dark1: 207, 26%, 17%;
-    --clr-dark2: 209, 23%, 22%;
-
-    --clr-light: 0, 0%, 98%;
-    --clr-white: 0, 0%, 100%;
-
-    --clr-bg: hsla(0, 0%, 86%, 1);
-
-    --clr-grey1: 0, 0%, 52%;
-    
-
-    --clr-warning: #FF5252;
-  
-    /* font-sizes */
-    --fs-900: 9.375rem;
-    --fs-800: 6.35rem;
-    --fs-700: 4rem;
-    --fs-600: 2rem;
-    --fs-500: 1.75rem;
-    --fs-400: 1.125rem;
-    --fs-300: 1rem;
-    --fs-200: 0.938rem;
-    --fs-100: 0.8rem;
-  
-  
-    /* font-families */
-    --ff-mono: 'Space Mono', monospace;
-    --ff-serif: "Serif", serif;
-    --ff-sans-serif: "Sans Serif", sans-serif;
-
-    /* MEASURESMENTS */
-    --bradius: 0.3rem;
-  }
