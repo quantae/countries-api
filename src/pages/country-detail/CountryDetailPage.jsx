@@ -3,9 +3,9 @@ import NavbarLayout from "../../layout/NavbarLayout";
 import { ReactComponent as BackIcon } from "../../assets/back-icon.svg";
 import styles from "./countrydetailpage.module.css";
 import { ThemeContext } from "../../context/themecontext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import data from "../../data.json";
-import { find } from "lodash";
+
 
 // Back reusable button
 export const Button = ({ onClick, label, icon, className, data }) => {
